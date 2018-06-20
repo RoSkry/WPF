@@ -1,0 +1,76 @@
+DispatcherTimer - класс
+
+Таймер, интегрированный в очередь Dispatcher, обрабатываемый с заданным интервалом времени и заданным приоритетом.
+
+Пространство имен:  System.Windows.Threading
+
+Конструкторы
+
+ DispatcherTimer()	Инициализирует новый экземпляр DispatcherTimer класс.
+ DispatcherTimer(DispatcherPriority)	Инициализирует новый экземпляр DispatcherTimer класс событий таймера процессов с указанным приоритетом.
+ DispatcherTimer(DispatcherPriority, Dispatcher)	Инициализирует новый экземпляр DispatcherTimer класс, который выполняется в определенное Dispatcher на определенном уровне приоритета.
+ DispatcherTimer(TimeSpan, DispatcherPriority, EventHandler, Dispatcher)	Инициализирует новый экземпляр DispatcherTimer класс, использующий указанный интервал времени, приоритет и обработчик событий Dispatcher.
+ 
+Свойства
+
+ Dispatcher	Возвращает Dispatcher связанный с данным DispatcherTimer.
+ Interval	Возвращает или задает период времени между тактами таймера.
+ IsEnabled	Возвращает или задает значение, указывающее, запущен ли таймер.
+ Tag	Возвращает или задает определяемый пользователем объект данных.
+ 
+Методы
+
+ Equals(Object)	Определяет, равен ли заданный объект текущему объекту. (Унаследовано от Object.)
+ Finalize	Позволяет объекту попытаться освободить ресурсы и выполнить другие операции очистки, перед тем как объект будет утилизирован в процессе сборки мусора. (Унаследовано от Object.)
+ GetHashCode	Играет роль хэш-функции для определённого типа.(Унаследовано от Object.)
+ GetType	Возвращает объект Type для текущего экземпляра. (Унаследовано от Object.)
+ MemberwiseClone	Создает неполную копию текущего объекта Object. (Унаследовано от Object.)
+ Start	Запускает DispatcherTimer.
+ Stop	Останавливает DispatcherTimer.
+ ToString	Возвращает строку, представляющую текущий объект. (Унаследовано от Object.)
+ 
+События
+
+ Tick	Происходит, если время интервала таймера истекло.
+ 
+Заметки
+
+DispatcherTimer пересчитать в верхней части каждое Dispatcher цикл.
+Не гарантируется, что выполняются таймеры только если интервал времени, но они гарантированно будут выполняться до истечения времени.
+Это происходит потому, что DispatcherTimer операции размещаются на Dispatcher очередь like другие операции.
+После DispatcherTimer операция выполняется зависит от других заданий в очереди и их приоритетах.
+Если набор узлов a System.Timers.Timer используется в выражении WPF приложение, замечая, что стоимость System.Timers.Timer затем выполняется в другом потоке пользовательский интерфейс поток.
+Доступ к объектам в Invoke поток, необходимые для создания операции над BeginInvokeпользовательский интерфейс поток с помощью Dispatcher или пользовательский интерфейс.
+Причины использования a DispatcherTimer сопротивляно к a System.Timers.Timer значение DispatcherTimer выполнение этих же поток как Dispatcher и a DispatcherPriority может быть задано DispatcherTimer.
+DispatcherTimer сдержит объект в активном состоянии, когда методы объекта привязанны к таймеру.
+
+Примеры
+
+В следующем примере создается a DispatcherTimer обновляет содержимое, a Label и вызовы InvalidateRequerySuggested метод CommandManager.
+DispatcherTimer именованный объект dispatcherTimer создать. Обработчик события dispatcherTimer_Tick добавляет к Tick событие dispatcherTimer.
+Interval имеет значение 1, второй использует объект TimeSpan, а таймера запускаются.
+
+
+//  DispatcherTimer setup
+dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+dispatcherTimer.Interval = new TimeSpan(0,0,1);
+dispatcherTimer.Start();
+
+
+Tick обработчик событий обновляет a Label отображает текущее, что второе и вызывают InvalidateRequerySuggested на CommandManager.
+
+
+//  System.Windows.Threading.DispatcherTimer.Tick handler
+//
+//  Updates the current seconds display and calls
+//  InvalidateRequerySuggested on the CommandManager to force 
+//  the Command to raise the CanExecuteChanged event.
+private void dispatcherTimer_Tick(object sender, EventArgs e)
+{
+    // Updating the Label which displays the current second
+    lblSeconds.Content = DateTime.Now.Second;
+
+    // Forcing the CommandManager to raise the RequerySuggested event
+    CommandManager.InvalidateRequerySuggested();
+}

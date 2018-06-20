@@ -1,0 +1,47 @@
+﻿<Window x:Class="comb.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:comb"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Path Stroke="DarkGray" StrokeThickness="1" SnapsToDevicePixels="True" Margin="0,0,46,28">
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Union">
+                    <CombinedGeometry.Geometry1>
+                        <CombinedGeometry GeometryCombineMode="Exclude">
+                            <CombinedGeometry.Geometry1>
+                                <EllipseGeometry Center="50 50" RadiusX="50" RadiusY="50"></EllipseGeometry>
+                            </CombinedGeometry.Geometry1>
+                            <CombinedGeometry.Geometry2>
+                                <EllipseGeometry Center="50 50" RadiusX="40" RadiusY="40"></EllipseGeometry>
+                            </CombinedGeometry.Geometry2>
+                        </CombinedGeometry>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <RectangleGeometry Rect="44 5 10 90">
+                            <RectangleGeometry.Transform>
+                                <RotateTransform Angle="45" CenterX="50" CenterY="50"></RotateTransform>
+                            </RectangleGeometry.Transform>
+                        </RectangleGeometry>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Path.Data>
+            <Path.Fill>
+                <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.8,1" >
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="White"  Offset="0"></GradientStop>
+                        <GradientStop Color="White"  Offset="0.45"></GradientStop>
+                        <GradientStop Color="LightBlue" Offset="0.9"></GradientStop>
+                        <GradientStop Color="Gray" Offset="1"></GradientStop>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Path.Fill>
+            <Path.RenderTransform>
+                <ScaleTransform ScaleX="1.3" ScaleY="1.3"></ScaleTransform>
+            </Path.RenderTransform>
+        </Path>
+    </Grid>
+</Window>

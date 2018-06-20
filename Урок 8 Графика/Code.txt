@@ -1,0 +1,259 @@
+<StackPanel>
+    <Rectangle Height="55" Width="105" Stroke="Blue" StrokeThickness="5" Fill="LightBlue"/>
+</StackPanel>
+
++++++++++++++++++++++++++++++++++++
+
+<Image Height="55" Width="105">
+  <Image.Source>
+    <DrawingImage>
+      <DrawingImage.Drawing>
+        <GeometryDrawing Brush="LightBlue">
+          <GeometryDrawing.Pen>
+            <Pen Brush="Blue" Thickness="5"/>
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry Rect="0, 0,100,50"/>
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingImage.Drawing>
+    </DrawingImage>
+  </Image.Source>
+</Image>
+
++++++++++++++++++++++++++++++++++++++
+
+public partial class MainWindow : System.Windows.Window
+ {
+   // Наш единственный рисующий визуальный объект 
+  private DrawingVisual rectVisual = new DrawingVisual();
+  private const int NumberOfVisualItems = 1;
+
+  public MainWindow()
+  {
+   InitializeComponent();
+   CreateRectVisual();// Вспомогательная функция для создания прямоугольника 
+  }
+  private void CreateRectVisual()
+  {
+   using (DrawingContext drawCtx = rectVisual.RenderOpen())
+   {
+     
+// Верхняя, левая, нижняя и правая позиции прямоугольника 
+    Rect rect = new Rect(50, 50, 105, 55);
+    drawCtx.DrawRectangle(Brushes.AliceBlue, new Pen(Brushes.Blue, 5), rect);
+   }
+
+    // Зарегистрируем наш визуальный элемент в дереве объектов, чтобы 
+// гарантировать поддержку маршрутизируемых событий, проверку попадания и 
+   AddVisualChild(rectVisual);
+   AddLogicalChild(rectVisual);
+  }
+
+   // Необходимые переопределения. Графическая система WPF вызовет 
+// это для определения того, сколько элементов надо визуализировать, 
+//и что именно в них визуализировать. 
+  protected override int VisualChildrenCount
+  {
+   get { return NumberOfVisualItems; }
+  }
+
+  protected override Visual GetVisualChild(int index)
+  {
+    // Нумерация элементов в коллекции начинается с нуля, поэтому вычитаем 1. 
+   if (index != (NumberOfVisualItems - 1))
+    throw new ArgumentOutOfRangeException("index", "Don't have that visual!");
+   return rectVisual;
+  }
+ }
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<Viewbox HorizontalAlignment="Left">
+      <Canvas Width="85" Height="50">
+         <Rectangle Height="13" Width="37" Stroke="Blue" StrokeThickness="2" Fill="LightBlue" Canvas.Left="7" Canvas.Top="20" />
+          <Ellipse  Fill ="Red" HorizontalAlignment="Stretch" Stretch="Fill"
+           Height="22" Width="26" Canvas.Left="12" Canvas.Top="15" />
+      </Canvas>
+</Viewbox>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<Ellipse Height ="100" Width ="100" Fill = "Black" />
+
+        <Line Name ="SimpleLine" X1 ="50" X2 ="150" Y1 ="50" Y2 ="150" Stroke ="DarkOliveGreen" StrokeThickness ="15" ToolTip ="This is a line!" StrokeStartLineCap="Round" StrokeEndLineCap="Triangle" />
+
+
+
+<Polyline Stroke ="Red" StrokeThickness ="20" StrokeLineJoin ="Round" Points ="10,10  40,40 10,90 300,50"/>
+
+
+<Polygon Fill ="AliceBlue" StrokeThickness ="5" Stroke ="Green" Points ="40,10 70,80 10,50" />
+
+
+<Polygon Stroke="Blue" StrokeThickness="2" Fill="Yellow" FillRule="Nonzero" Points= "5,200 68,70 110,200 0,125 135,125" />
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<Rectangle Height="25" Width="37" Stroke="Blue" StrokeThickness="2" Fill="LightBlue" Canvas.Left="7" Canvas.Top="20" >
+  <Rectangle.RenderTransform>
+    <RotateTransform Angle="45" />
+  </Rectangle.RenderTransform>
+</Rectangle>
+
+--------------------------------------------------------------------------
+    <StackPanel>
+
+        <Canvas>
+
+        <Polygon Name="polygon" Stroke="Blue" StrokeThickness="2" Fill="Yellow" FillRule="EvenOdd" Points= "5,200 68,70 110,200 0,125 135,125"/>
+</Canvas>
+        <Button Name="b1" Content="Rotate" Width="200" Click="Button_Click" />
+
+    </StackPanel>
+		-----------------------------------
+				
+        int angle = 5;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            polygon.RenderTransformOrigin = new Point(0.5, 0.5);
+
+            polygon.RenderTransform = new RotateTransform(angle += 5);
+
+        }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<StackPanel>
+        <Ellipse Fill ="DarkRed" Height ="50" Width ="50"/>
+        <Ellipse Height ="50" Width ="50">
+            <Ellipse.Fill>
+                <SolidColorBrush Color ="DarkGoldenrod"/>
+            </Ellipse.Fill>
+        </Ellipse>
+    </StackPanel>
+
+---------------------------------------
+
+    <Ellipse Height ="50" Width ="50">
+      <Ellipse.Fill>
+        <SolidColorBrush>
+          <SolidColorBrush.Color>
+            <Color A ="40" R ="100" G ="87" B ="98"/>
+          </SolidColorBrush.Color>
+        </SolidColorBrush>
+      </Ellipse.Fill>
+    </Ellipse>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Rectangle RadiusX ="15" RadiusY ="15" Height ="40" Width ="100">
+      <Rectangle.Fill>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+          <GradientStop Color="LimeGreen" Offset="0.0" />
+          <GradientStop Color="Orange" Offset="0.25" />
+          <GradientStop Color="Yellow" Offset="0.75" />
+          <GradientStop Color="Blue" Offset="1.0" />
+        </LinearGradientBrush>
+      </Rectangle.Fill>
+    </Rectangle>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<Rectangle Width="50" Height="100">
+        <Rectangle.Fill>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Yellow" Offset="0.0" />
+                <GradientStop Color="Red" Offset="0.25" />
+                <GradientStop Color="Blue" Offset="0.75" />
+                <GradientStop Color="LimeGreen" Offset="1.0" />
+            </LinearGradientBrush>
+        </Rectangle.Fill>
+</Rectangle>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<TextBlock Margin="5" FontWeight="Bold" FontSize="65" TextWrapping="Wrap" TextAlignment="Center">
+    <TextBlock.Text>This text uses a gradient.</TextBlock.Text>
+    <TextBlock.Foreground>
+     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="Yellow" Offset="0.0" />
+      <GradientStop Color="Red" Offset="0.25" />
+      <GradientStop Color="Blue" Offset="0.75" />
+      <GradientStop Color="LimeGreen" Offset="1.0" />
+     </LinearGradientBrush>
+    </TextBlock.Foreground>
+</TextBlock>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ <Ellipse Height ="75" Width ="75">
+      <Ellipse.Fill>
+        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+          <GradientStop Color="Yellow" Offset="0" />
+          <GradientStop Color="Red" Offset="0.25" />
+          <GradientStop Color="Blue" Offset="0.75" />
+          <GradientStop Color="LimeGreen" Offset="1" />
+        </RadialGradientBrush>
+      </Ellipse.Fill>
+    </Ellipse>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Ellipse Margin="5" Stroke="Black" StrokeThickness="1" Width="200" Height="200">
+        <Ellipse.Fill>
+            <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.7,0.3">
+                <GradientStop Color="White" Offset="0" />
+                <GradientStop Color="Blue" Offset="1" />
+            </RadialGradientBrush>
+        </Ellipse.Fill>
+</Ellipse>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Grid>
+    <Grid.Background>
+        <!--<ImageBrush ImageSource="Penguins.jpg" />-->
+        <ImageBrush ImageSource="Penguins.jpg" Stretch="Uniform" Viewbox="0.4,0.5 0.2,0.2"/>
+    </Grid.Background>
+</Grid>
+
+--------------------------------------------------------------
+
+        <ImageBrush ImageSource="Penguins.jpg" TileMode="FlipX" Viewport="0,0 0.5,0.5"/>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Name="cmd" Margin="100 10 100 10" Padding="5">
+            Is this a real button?
+        </Button>
+        <Rectangle Grid.Row="1" Margin="100 10 100 10">
+            <Rectangle.Fill>
+                <VisualBrush Visual="{Binding ElementName=cmd}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Button FontSize="14" FontWeight="Bold" Width="200" Height="50">
+    <Button.OpacityMask>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Offset="0" Color="Black"></GradientStop>
+            <GradientStop Offset="1" Color="Transparent"></GradientStop>
+        </LinearGradientBrush>
+    </Button.OpacityMask>
+    <Button.Content>Частично прозрачная кнопка</Button.Content>
+</Button>

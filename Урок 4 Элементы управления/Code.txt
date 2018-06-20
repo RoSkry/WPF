@@ -1,0 +1,303 @@
+	    Label MyControl = new Label();
+            MyControl.Name = "MyControl";
+            MyControl.Content = "You Name";
+            MyControl.Margin = new Thickness(50,50,0,0);
+            grid.Children.Add(MyControl);
+
+
+            Button MyControl = new Button();
+            MyControl.Name = "MyControl";
+            MyControl.Content = "MyButton";
+            MyControl.Margin = new Thickness(20,20,0,0);
+            MyControl.Width = 100;
+            MyControl.Height = 24;
+	    MyControl.Click += new RoutedEventHandler(MyControl_Click);           
+            grid.Children.Add(MyControl);
+
+
+	    TextBox MyControl = new TextBox();
+            MyControl.Name = "MyControl";
+            MyControl.Text = "SuperText";
+            MyControl.Margin = new Thickness(20,20,0,0);
+            MyControl.Width = 100;
+            MyControl.Height = 24;
+
+	    MyControl.Foreground = new SolidColorBrush(Colors.Red);
+
+            grid.Children.Add(MyControl);
+
+	    TextBox NameP = new TextBox();
+            NameP.Margin = new Thickness(6);
+            NameP.ToolTip = "Ваше имя";
+            grid.Children.Add(NameP);
+
+ 
+<TextBox ToolTip="Ваше имя"></TextBox>
+
+
+	    PasswordBox MyControl = new PasswordBox();
+            MyControl.Name = "MyControl";
+            MyControl.Password = "SuperText";
+            MyControl.Margin = new Thickness(20, 20, 0, 0);
+            MyControl.Width = 100;
+            MyControl.Height = 24;
+            grid.Children.Add(MyControl);
+
+	    CheckBox MyControl = new CheckBox();
+            MyControl.Name = "MyControl";
+            MyControl.Content = "Подписаться на новости";
+            MyControl.Margin = new Thickness(20, 20, 0, 0);
+            MyControl.Width = 200;
+            MyControl.Height = 24;
+            grid.Children.Add(MyControl);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+        <ProgressBar Name="progress" Width="250" Height="30" IsIndeterminate="True" Visibility="Collapsed"/>
+        <Button  Width="250" Height="30" Click="Button_Click"/>
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            progress.Visibility = Visibility.Visible;
+        }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <PasswordBox Name="pass" PasswordChar="*" Password="123"/>
+        <TextBox Name="tb" Visibility="Collapsed"/>
+        <StackPanel Grid.Row="1" Name="grid">
+            <Label Name="label" />
+            <CheckBox Name="check" IsChecked="{x:Null}" IsThreeState="True"  Click="CheckBox_Click"/>
+        </StackPanel>
+    </Grid>
+
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (check.IsChecked == true)
+            {
+                tb.Visibility = Visibility.Visible;
+                pass.Visibility = Visibility.Collapsed;
+                tb.Text = pass.Password;
+            }
+            else if (check.IsChecked == false)
+            {
+                tb.Visibility = Visibility.Collapsed;
+                pass.Visibility = Visibility.Visible;
+            }
+
+            label.Content = pass.Password;
+
+        }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <StackPanel Name="stack">
+        <ListBox>
+            <ListBoxItem>
+                <ListBoxItem.Content>
+                    <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+                </ListBoxItem.Content>
+            </ListBoxItem>
+            <ListBoxItem>
+                <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+            </ListBoxItem>
+            <ListBoxItem>
+                <ListBoxItem.Content>
+                    <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+                </ListBoxItem.Content>
+                <ListBoxItem.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Red" Offset="0"/>
+                        <GradientStop Color="Yellow" Offset="0.5"/>
+                        <GradientStop Color="Green" Offset="1"/>
+                    </LinearGradientBrush>
+                </ListBoxItem.Background>
+            </ListBoxItem>
+        </ListBox>
+    </StackPanel>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <StackPanel Name="stack">
+        <ComboBox>
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                        <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                        <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                        <CheckBox IsChecked="{x:Null}" Content="Click" Checked="CheckBox_Checked" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+        </ComboBox>
+    </StackPanel>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <StackPanel Name="stack">
+        <ComboBox>
+            <ComboBoxItem IsSelected="True">
+                <ComboBoxItem.Content>
+                    <RadioButton Content="Red" GroupName="1" IsThreeState="True" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                    <RadioButton Content="Green" GroupName="1" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                    <RadioButton Content="Blue" GroupName="1" />
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+        </ComboBox>
+    </StackPanel>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// создание элемента Image
+            Image myImage = new Image();
+            myImage.Width = 200;
+
+// создание источника для Image
+            BitmapImage myBitmapImage = new BitmapImage();
+            myBitmapImage.BeginInit();
+myBitmapImage.UriSource = new Uri(@"C:\Docu...es\WaterLilies.jpg");
+
+// возможность осуществления различных настроек источника для Image
+// задание ширины в пикселях
+            myBitmapImage.DecodePixelWidth = 200;
+            myBitmapImage.EndInit();
+// установка источника для Image
+            myImage.Source = myBitmapImage;
+            grid.Children.Add(myImage);
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    <StackPanel Name="stack">
+        <!--Images/bear.jpg-->
+        <Image Source="/WpfApp1;component/Images/bear.jpg"/>
+    </StackPanel>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Slider Name="RectangleHeight"  Margin="10, 0, 0, 0" 
+  Width="100" Orientation="Horizontal" HorizontalAlignment="Left" 
+  Value="50" Minimum="0" Maximum="200" 
+  SmallChange="1" LargeChange="10"
+  TickPlacement="BottomRight" TickFrequency="10" Ticks="20,55,125"/>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ScrollBar MyControl = new ScrollBar();
+            MyControl.Name = "ScrollBar1";
+            MyControl.Minimum = 0;
+            MyControl.Maximum = 100;
+            MyControl.Value = 50;
+            MyControl.Orientation = Orientation.Horizontal;
+            MyControl.Margin = new Thickness(10, 30, 10, 10);
+            grid.Children.Add(MyControl);
+
+
+<ScrollBar Height="20"  Orientation="Horizontal" Margin="6" Name="scrollBar1" Minimum="0" Maximum="10" Value="6" />
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Name="stack">
+            <ProgressBar Name="progress" Width="250" Height="30" IsIndeterminate="True" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+
+            <ScrollBar Height="20"  Orientation="Horizontal" Margin="6" Name="scrollBar1" Minimum="0" Maximum="10" Value="6" />
+        </StackPanel>
+    </ScrollViewer>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<TabControl Name="tabControl1" >
+     <TabItem Header="One"></TabItem>
+     <TabItem Header="Two">
+         <StackPanel Margin="6">
+             <TextBox Margin="6"></TextBox>
+             <Button Margin="6" Content="Ok"></Button>
+         </StackPanel>
+     </TabItem>
+     <TabItem Header="Tree"></TabItem>
+</TabControl>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+     Expander MyControl = new Expander();
+     MyControl.Header = "Дополнительно";
+     StackPanel Stack = new StackPanel() { Margin = new Thickness(6) };
+     TextBox MyTextBox = new TextBox() { Margin = new Thickness(6) };
+     Button MyButton = new Button() { Margin = new Thickness(6) };
+     MyButton.Content = "Ok";
+     Stack.Children.Add(MyTextBox);
+     Stack.Children.Add(MyButton);
+     MyControl.Content = Stack;
+
+     stack.Children.Add(MyControl);
+
+        <Expander Header="Expander" Height="230" Name="expander1" Width="120">
+            <StackPanel>
+                <TextBox Height="60"></TextBox>
+                <Button Height="60">Button</Button>
+            </StackPanel>
+        </Expander>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Grid>
+        <TextBlock TextWrapping="Wrap">Хочешь больше информации - <Run TextDecorations="Underline" MouseEnter="Run_MouseEnter" MouseLeave="Run_MouseLeave">спрашивай</Run>, если интересно. </TextBlock>
+        <Popup Name="link" StaysOpen="False" Placement="Mouse" MaxWidth="200" PopupAnimation="Slide" AllowsTransparency="True">
+            <Border BorderBrush="Beige" BorderThickness="2" Background="White">
+                <TextBlock Margin="10" TextWrapping="Wrap">Более подробную <LineBreak/> информацию получишь в 
+                    <Hyperlink NavigateUri="http://www.google.ua" Click="Hyperlink_Click">Гугле</Hyperlink>
+                </TextBlock>
+            </Border>
+        </Popup>
+    </Grid>
+
+
+
+        private void Run_MouseEnter(object sender, MouseEventArgs e)
+        {
+            link.IsOpen = true;
+        }
+
+        private void Run_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //link.IsOpen = false;
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(((Hyperlink)sender).NavigateUri.ToString());
+        }
+

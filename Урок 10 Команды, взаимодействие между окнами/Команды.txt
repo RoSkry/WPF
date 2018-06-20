@@ -1,0 +1,12 @@
+ќбъекты внутренних управл€ющих команд WPF 
+ 
+ApplicationCommands (Close, Copy, Cut, Delete, Find, Open, Paste, Save, SaveAll, Redo, Undo) ќпредел€ет свойства, представл€ющие команды уровн€ приложени€.
+
+ComponentsCommands (MoveDown, MoveFocusBack, MoveLeft, MoveRight, ScrollToEnd, ScrollToHome) ќпредел€ет свойства, отображающие распространенные команды, которые выполн€ютс€ элементами пользовательского интерфейса.
+
+MediaCommands (BoostBase, ChannelUp, ChannelDown, FastForward, NextTrack, Play, Rewind, Select, Stop) ќпредел€ет свойства, позвол€ющие различным медиа-элементам управлени€ выдавать распространенные команды.
+
+NavigationCommands (BrowseBack, BrowseForward, Favorites, LastPage, NextPage, Zoom) ќпредел€ет р€д свойств, используемых дл€ приложений, в которых примен€етс€ навигационна€ модель WPF.
+
+EditingCommands (AlignCenter, CorrectSpellingError, DecreaseFontSize, EnterLineBreak, EnterParagraphBreak, MoveDownByLine, MoveRightByWord) ќпредел€ет р€д свойств, обычно используемых при программировании с объектами, представленными API-интерфейсом документов WPF.
+ 

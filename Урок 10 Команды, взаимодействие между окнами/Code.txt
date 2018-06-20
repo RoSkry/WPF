@@ -1,0 +1,175 @@
+    <Grid Background="Black">
+        <Image Width="291" Height="195" Source="Coast.jpg" Stretch="Fill" >
+            <Image.Clip>
+                <CombinedGeometry  GeometryCombineMode="Union">
+                    <CombinedGeometry.Geometry1>
+                        <EllipseGeometry Center="100,100" RadiusX="90" RadiusY="90" />
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <EllipseGeometry Center="200,100" RadiusX="90" RadiusY="90" />
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry >
+            </Image.Clip>
+        </Image>
+    </Grid>
+
++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" FontSize="30" Name="txt1">qwe</TextBox>
+        <Rectangle Grid.Row="1" Height="40" RenderTransformOrigin="0,0.5">
+            <Rectangle.Fill>
+                <VisualBrush Visual="{Binding ElementName=txt1}"/>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <ScaleTransform ScaleY="-1"/>
+            </Rectangle.RenderTransform>
+            <Rectangle.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="Transparent"/>
+                    <GradientStop Offset="1" Color="#66000000"/>
+                </LinearGradientBrush>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </Grid>
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        System.Windows.Forms.OpenFileDialog openFileDialog = null;
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (openFileDialog == null)
+                openFileDialog = new System.Windows.Forms.OpenFileDialog();
+
+            openFileDialog.ShowDialog();
+        }
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <DockPanel>
+        <DockPanel.CommandBindings>
+            <CommandBinding Command="ApplicationCommands.Open" Executed="CommandBinding_Executed"/>
+            <CommandBinding Command="ApplicationCommands.Find" Executed="FindCommand_Executed" />
+        </DockPanel.CommandBindings>
+        <Menu DockPanel.Dock ="Top" HorizontalAlignment="Left" Background="White" BorderBrush ="Black">
+            <MenuItem Header="_File" >
+                <Separator/>
+                <MenuItem Name="openItem" Command="Open" />
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header ="_Spelling Hints" InputGestureText="Ctrl+P" Click="FileExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <Button Name="Butt" DockPanel.Dock="Bottom" Width="100" Height="50" Command="Open"
+                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"/>
+        <!--Content="{x:Static ApplicationCommands.Open}"-->
+        <Button DockPanel.Dock="Bottom" Width="100" Height="50" Command="Find"
+                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"/>
+        <TextBox Name="textBox" TextChanged="TextBox_TextChanged" />
+    </DockPanel>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+     // Клавиатурный жест Control+F 
+      InputGesture gesture = new KeyGesture(Key.F, ModifierKeys.Control, "Ctrl+F");
+      ApplicationCommands.Find.InputGestures.Add(gesture);
+
+      // Комбинированный жест Control+LeftClick
+      gesture = new MouseGesture(MouseAction.LeftClick, ModifierKeys.Control); 
+      ApplicationCommands.Find.InputGestures.Add(gesture);
+ 
+      // Клавиатурный жест Control+Q
+       KeyGesture keyGesture = new KeyGesture(Key.Q, ModifierKeys.Control, "Ctrl+Q"); 
+      ApplicationCommands.Find.InputGestures.Add(keyGesture); 
+
+      // Комбинированный жест Alt+LeftClick
+      MouseGesture mouseGesture = new MouseGesture(); 
+      mouseGesture.MouseAction = MouseAction.LeftClick; 
+      mouseGesture.Modifiers = ModifierKeys.Alt; 
+      ApplicationCommands.Find.InputGestures.Add(mouseGesture);
+
+----------------------------------------------------------------------
+
+    private void FindCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+      MessageBox.Show("Find");
+    }
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ <Window.CommandBindings>
+    <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
+    <CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" />
+  </Window.CommandBindings>
+
++++++++++++++++++++++++++++++++++++++++++++++++
+
+void Window_Loaded(object sender, RoutedEventArgs e)
+  { 
+  // Привязка команд в коде
+    CommandBinding binding = new CommandBinding(); 
+    binding.Command = ApplicationCommands.Open; 
+    binding.Executed += new ExecutedRoutedEventHandler(OpenCommand_Executed); 
+    this.CommandBindings.Add(binding); 
+    binding = new CommandBinding(); 
+    binding.Command = ApplicationCommands.Save;
+    binding.Executed += new ExecutedRoutedEventHandler(SaveCommand_Executed); 
+    this.CommandBindings.Add(binding); 
+
+    // Очистка коллекций прежних жестов команд 
+    ApplicationCommands.Open.InputGestures.Clear(); 
+    ApplicationCommands.Save.InputGestures.Clear(); 
+    // Добавление новых жестов клавиатуры Alt+O и Alt+S 
+    InputGesture key = new KeyGesture(Key.O, ModifierKeys.Alt, "Alt+O");
+    ApplicationCommands.Open.InputGestures.Add(key); 
+    KeyGesture keyGesture = new KeyGesture(Key.S, ModifierKeys.Alt, "Alt+S");
+    ApplicationCommands.Save.InputGestures.Add(keyGesture); 
+
+    // Добавление новых жестов мыши Ctrl+LeftClick и Ctrl+RightClick 
+    InputGesture mouse = new MouseGesture(MouseAction.LeftClick, ModifierKeys.Control); 
+    ApplicationCommands.Open.InputGestures.Add(mouse);
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<CommandBinding Command="local:MyClose.Close" Executed="CommandBinding_CloseExecuted" CanExecute="CommandBinding_CanExecute"/>
+
+...
+
+        <Button DockPanel.Dock="Bottom" Width="100" Height="50" Command="local:MyClose.Close"
+                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+
+-------------------------------------------------------------------------------------------------------------------
+				
+        private void FindCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Find");
+            isDirty = true;
+            CommandManager.InvalidateRequerySuggested();
+        }
+		
+        private void CommandBinding_CloseExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("MyClose");
+        }
+
+        bool isDirty;
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = isDirty;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            isDirty = true;
+
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                isDirty = false;
+            }
+        }

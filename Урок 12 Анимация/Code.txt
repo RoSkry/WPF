@@ -1,0 +1,257 @@
+
+<Grid> 
+
+	<Button Name='button1' HorizontalAlignment='Center' VerticalAlignment='Center' FontSize='9pt'>
+		Hello World
+	</Button>
+</Grid>
+
+------------------------------------------------------------
+
+
+long start;
+double duration = 5000;
+double from = 9.0;
+double to = 18.0;
+
+public Animations()
+{
+	InitializeComponent();
+
+	DispatcherTimer timer = new DispatcherTimer();
+	timer.Interval = TimeSpan.FromMilliseconds(50);
+	start = Environment.TickCount;
+	timer.Tick += timer_Tick;
+	timer.IsEnabled = true;
+}
+
+void timer_Tick(object sender, EventArgs e)
+{
+	long elapsed = Environment.TickCount - start;
+	if (elapsed >= duration) {
+		button1.FontSize = to;
+		((DispatcherTimer)sender).IsEnabled = false;
+		return;
+	}
+	double increase = to - from;
+	button1.FontSize = from + (increase / (duration / elapsed));
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    
+    <Grid>
+        <Rectangle Name="rect" Height="100" Width="160" Fill="Orange">
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.MouseDown">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="rect" Storyboard.TargetProperty="Width" To="300" Duration="0:0:5"/>
+                                <DoubleAnimation Storyboard.TargetName="rect" Storyboard.TargetProperty="Height" By="50" Duration="0:0:5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+    </Grid>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle">
+            <Style.Triggers>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width" To="250" Duration="0:0:5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+    <Button Padding="10" Name="cmdGrow" Height="40" Width="160" Style="{StaticResource ButtonStyle}"
+     HorizontalAlignment="Center" VerticalAlignment="Center">
+        Click Me
+    </Button>      
+    </Grid>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Triggers>
+
+            <EventTrigger RoutedEvent="Grid.MouseDown">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="imgDay" Storyboard.TargetProperty="Opacity"
+        From="1" To="0" Duration="0:0:10" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <EventTrigger SourceName="btnStart" RoutedEvent="Button.Click">
+                <BeginStoryboard Name="beginStoryboard">
+                    <Storyboard Name="storyboard" CurrentTimeInvalidated="Storyboard_CurrentTimeInvalidated" SpeedRatio="{Binding ElementName=sldSpeed, Path=Value}">
+                        <DoubleAnimation Storyboard.TargetName="imgDay" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:10" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <EventTrigger SourceName="btnPause" RoutedEvent="Button.Click">
+                <PauseStoryboard BeginStoryboardName="beginStoryboard"/>
+            </EventTrigger>
+            <EventTrigger SourceName="btnResume" RoutedEvent="Button.Click">
+                <ResumeStoryboard BeginStoryboardName="beginStoryboard"/>
+            </EventTrigger>
+            <EventTrigger SourceName="btnStop" RoutedEvent="Button.Click">
+                <StopStoryboard BeginStoryboardName="beginStoryboard"/>
+            </EventTrigger>
+
+            <EventTrigger SourceName="btnMiddle" RoutedEvent="Button.Click">
+                <SeekStoryboard BeginStoryboardName="beginStoryboard"
+                        Offset="0:0:5"/>
+            </EventTrigger>
+
+        </Grid.Triggers>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Image Source="night.jpg"/>
+        <Image Name="imgDay" Source="day.jpg"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Name="btnStart" Content="Start"/>
+            <Button Name="btnPause" Content="Pause"/>
+            <Button Name="btnResume" Content="Resume"/>
+            <Button Name="btnStop" Content="Stop"/>
+            <Button Name="btnMiddle" Content="Move To Middle"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="2" Name="tblTime" HorizontalAlignment="Center"/>
+
+        <Slider Grid.Row="3" Name="sldSpeed" Width="350" Minimum="1" TickPlacement="BottomRight" ValueChanged="sldSpeed_ValueChanged"  />
+
+        <ProgressBar Grid.Row="4" Name="progressBar" Width="350" Height="20" Maximum="1"/>
+    </Grid>
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void sldSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            storyboard.SetSpeedRatio(this, sldSpeed.Value);
+        }
+
+        private void Storyboard_CurrentTimeInvalidated(object sender, EventArgs e)
+        {
+            Clock storyboardClock = (Clock)sender;
+
+            if (storyboardClock.CurrentProgress == null)
+            {
+                tblTime.Text = "[[ stopped ]]";
+                progressBar.Value = 0;
+            }
+            else
+            {
+                tblTime.Text = storyboardClock.CurrentTime.ToString();
+                progressBar.Value = (double)storyboardClock.CurrentProgress;
+            }
+        }
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Анимация с использованием дискретных ключевых кадров 
+
+
+<StackPanel> 
+<Button Name="myButton" Height="40" 
+FontSize="16pt" FontFamily="Verdana" Width = "100"> 
+<Button.Triggers> 
+<EventTrigger RoutedEvent="Button.Loaded"> 
+<BeginStoryboard> 
+<Storyboard> 
+<StringAnimationUsingKeyFrames RepeatBehavior = "Forever" 
+Storyboard.TargetName="myButton" 
+Storyboard.TargetProperty="Content" 
+Duration="0:0:3"> 
+<DiscreteStringKeyFrame Value="" KeyTime="0:0:0" /> 
+<DiscreteStringKeyFrame Value="O" KeyTime="0:0:1" /> 
+<DiscreteStringKeyFrame Value="OK" KeyTime="0:0:1.5" /> 
+<DiscreteStringKeyFrame Value="OK!" KeyTime="0:0:2" /> 
+</StringAnimationUsingKeyFrames> 
+</Storyboard> 
+</BeginStoryboard> 
+</EventTrigger> 
+</Button.Triggers> 
+</Button> 
+</StackPanel> 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  <Window.Triggers>
+    <EventTrigger RoutedEvent="Window.Loaded">
+      <EventTrigger.Actions>
+        <BeginStoryboard>
+          <Storyboard>
+            <PointAnimationUsingKeyFrames Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Fill.GradientOrigin"
+                                           RepeatBehavior="Forever" >
+              <LinearPointKeyFrame Value="0.7,0.3" KeyTime="0:0:0"></LinearPointKeyFrame>
+              <LinearPointKeyFrame Value="0.3,0.7" KeyTime="0:0:5"></LinearPointKeyFrame>
+              <LinearPointKeyFrame Value="0.5,0.9" KeyTime="0:0:8"></LinearPointKeyFrame>
+              <LinearPointKeyFrame Value="0.9,0.6" KeyTime="0:0:10"></LinearPointKeyFrame>
+              <LinearPointKeyFrame Value="0.8,0.2" KeyTime="0:0:12"></LinearPointKeyFrame>
+              <LinearPointKeyFrame Value="0.7,0.3" KeyTime="0:0:14"></LinearPointKeyFrame>
+
+              <DiscretePointKeyFrame Value="0.7,0.3" KeyTime="0:0:20"></DiscretePointKeyFrame>
+              <DiscretePointKeyFrame Value="0.3,0.7" KeyTime="0:0:25"></DiscretePointKeyFrame>
+              <DiscretePointKeyFrame Value="0.5,0.9" KeyTime="0:0:28"></DiscretePointKeyFrame>
+              <DiscretePointKeyFrame Value="0.9,0.6" KeyTime="0:0:20"></DiscretePointKeyFrame>
+              <DiscretePointKeyFrame Value="0.8,0.2" KeyTime="0:0:22"></DiscretePointKeyFrame>
+              <DiscretePointKeyFrame Value="0.7,0.3" KeyTime="0:0:24"></DiscretePointKeyFrame>
+            </PointAnimationUsingKeyFrames>
+          
+              
+            <ColorAnimation Storyboard.TargetName="ellipse" Storyboard.TargetProperty="Fill.GradientStops[1].Color"
+              To="Black"  Duration="0:0:10"
+              AutoReverse="True" RepeatBehavior="Forever"></ColorAnimation>
+          </Storyboard>
+        </BeginStoryboard>
+      </EventTrigger.Actions>
+    </EventTrigger>
+  </Window.Triggers>
+    <Grid>
+      <Ellipse Name="ellipse" Margin="5" Grid.Row="1" Stretch="Uniform">
+        <Ellipse.Fill>
+          <RadialGradientBrush
+             RadiusX="1" RadiusY="1" GradientOrigin="0.7,0.3">
+            <GradientStop Color="White" Offset="0" ></GradientStop>
+            <GradientStop Color="Blue" Offset="1" ></GradientStop>            
+          </RadialGradientBrush>
+
+        </Ellipse.Fill>
+      </Ellipse>
+    </Grid>

@@ -1,0 +1,243 @@
+https://hangouts.google.com/call/2zdI5Eu8Q_0-zNPNzfbRAAEI
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<TextBlock Text="{ Binding Path=Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+
+------------------------------------------------------------------------------------------
+
+<TextBlock> 
+      <TextBlock.Text> 
+      <Binding Path="Title"> 
+        <Binding.RelativeSource> 
+          <RelativeSource Mode="FindAncestor" AncestorType="{x:Type Window}" /> 
+        </Binding.RelativeSource> 
+      </Binding> 
+      </TextBlock.Text>
+    </TextBlock>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<WrapPanel HorizontalAlignment="Left">
+<Button FontSize="12" Margin="2,2" Background="Purple" Foreground="White" Height="50" Width="70">Button1</Button>
+<Button FontSize="12" Margin="2,2" Background="Purple" Foreground="White" Height="50" Width="70">Button2</Button>
+<Button FontSize="12" Margin="2,2" Background="Purple" Foreground="White" Height="50" Width="70">Button3</Button>
+<Button FontSize="12" Margin="2,2" Background="Purple" Foreground="White" Height="50" Width="70">Button4</Button>
+<Button FontSize="12" Margin="2,2" Background="Purple" Foreground="White" Height="50" Width="70">Button5</Button>
+</WrapPanel>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+<WrapPanel >
+  <WrapPanel.Resources>
+            <Style x:Key="buttonStyle">
+                <Setter Property="Button.FontSize" Value="22"/>
+                <Setter Property="Button.Background" Value="Blue"/>
+                <Setter Property="Button.Foreground" Value="White"/>
+                <Setter Property="Button.Height" Value="50"/>
+                <Setter Property="Button.Width" Value="90"/>
+            </Style>
+  </WrapPanel.Resources>
+      
+        <Button Style="{StaticResource buttonStyle}">Button1</Button>
+        <Button Style="{StaticResource buttonStyle}">Button2</Button>
+        <Button Style="{StaticResource buttonStyle}">Button3</Button>
+        <Button Style="{StaticResource buttonStyle}">Button4</Button>
+        <Button Style="{StaticResource buttonStyle}">Button5</Button>
+</WrapPanel> 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Application x:Class="WpfApplication4.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="Window1.xaml">
+  	<Application.Resources>
+            <Style x:Key="ApplicationWideStyle">
+                <Setter Property="Button.Background" Value="BlueViolet" />           
+            </Style>
+       </Application.Resources>
+    </Application>
+
+----------------------------------------------------------------------------------
+
+<Window.Resources>
+        <Style x:Key="ButtonStyle">
+            <Setter Property="Control.Background" Value="BlueViolet" />
+            <Setter Property="Control.Foreground" Value="White" />
+            <Setter Property="Control.FontSize" Value="20" />
+            <Setter Property="Control.Width" Value="50" />
+            <Setter Property="Control.Height" Value="30" />
+        </Style>
+    </Window.Resources>
+
+----------------------------------------------------------------------------------
+
+<Button Width="70">
+            <Button.Style>
+                <Style>
+                    <Setter Property="Button.Background" Value="Red"/>
+                    <Setter Property="Button.Foreground" Value="Black" />
+                </Style>
+            </Button.Style>
+</Button>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Window.Resources>
+           <Style x:Key="BigFontButtonStyle">
+             <Setter Property="Control.FontFamily" Value="Times New Roman" />
+              <Setter Property="Control.FontSize" Value="18" />
+              <Setter Property="Control.FontWeight" Value="Bold" />
+           </Style>
+           <Style x:Key="EmphasizedBigFontButtonStyle"
+              BasedOn="{StaticResource BigFontButtonStyle}">
+             <Setter Property="Control.Foreground" Value="White" />
+             <Setter Property="Control.Background" Value="DarkBlue" />
+           </Style>
+</Window.Resources>
+<StackPanel>
+<Button Style="{StaticResource EmphasizedBigFontButtonStyle}" Content="Go"/>
+ <Button Style="{StaticResource BigFontButtonStyle}" >GO</Button>
+</StackPanel>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+textblock1.Style = (Style)(this.Resources["TitleText"]);
+
+textblock1.Style = (Style)FindResource("TitleText");
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <Window.Resources>
+        <Style x:Key="StyleHover">
+            <Style.Setters>
+                <Setter Property="Control.Background" Value="Yellow" />
+            </Style.Setters>
+
+            <Style.Triggers>
+                <Trigger Property="Control.IsFocused" Value="True">
+                    <Setter Property="Control.Background" Value="Red" />
+                </Trigger>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Background" Value="Blue" />
+                </Trigger>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="Control.Foreground" Value="Green" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button Content="button1"  BorderThickness="50" Style="{StaticResource StyleHover}"/>
+        <Button Content="button2"  BorderThickness="50"/>
+        <TextBox Style="{StaticResource StyleHover}">
+            Hover over me.
+        </TextBox>
+    </StackPanel>
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Grid>
+    <TextBlock Text="Здравствуйте, стилисты!" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock.Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Blue"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="Red" />
+                        <Setter Property="TextDecorations" Value="Underline" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </TextBlock.Style>
+    </TextBlock>
+</Grid>
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	
+	<Window.Resources>
+        <Style x:Key="StyleHover">
+            <Style.Setters>
+                <Setter Property="Control.Background" Value="Yellow" />
+            </Style.Setters>
+
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsFocused" Value="True"/>
+                        <Condition Property="Control.IsMouseOver" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Control.Foreground" Value="LightPink" />
+                        <Setter Property="Control.FontStyle" Value="Italic" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button Content="button1"  BorderThickness="50" Style="{StaticResource StyleHover}"/>
+        <Button Content="button2" BorderThickness="50"/>
+        <TextBox Style="{StaticResource StyleHover}">
+            Hover over me.
+        </TextBox>
+    </StackPanel>
+
+	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <CheckBox Name="cbSample" Content="Hello, world?" />
+        <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="48">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="No" />
+                    <Setter Property="Foreground" Value="Red" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=cbSample, Path=IsChecked}" Value="True">
+                            <Setter Property="Text" Value="Yes!" />
+                            <Setter Property="Foreground" Value="Green" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </StackPanel>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	<Window.Resources>
+        <Style x:Key="MyStyle1">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:1" To="5000" Storyboard.TargetProperty="Width"></DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:04" To="5000" Storyboard.TargetProperty="Height"></DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:04" Storyboard.TargetProperty="Width"></DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:04" Storyboard.TargetProperty="Height"></DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Button Style="{StaticResource MyStyle1}" Content="Hello World" Height="29" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="79" />
+    </Grid>

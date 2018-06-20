@@ -1,0 +1,79 @@
+<Rectangle Name="myrect" Width="350" Height="250">
+    <Rectangle.Fill>
+        <SolidColorBrush x:Name="brush" Color="Red"/>
+    </Rectangle.Fill>
+    <Rectangle.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard RepeatBehavior="Forever">
+                    <ColorAnimation Storyboard.TargetName="brush" 
+                      Storyboard.TargetProperty="Color" From="Red" To="Green" 
+                      Duration="0:0:1" BeginTime="0:0:0"/>
+                    <ColorAnimation Storyboard.TargetName="brush" 
+                      Storyboard.TargetProperty="Color" From="Green" To="Blue" 
+                      Duration="0:0:1" BeginTime="0:0:1"/>
+                    <ColorAnimation Storyboard.TargetName="brush" 
+                      Storyboard.TargetProperty="Color" From="Blue" To="Yellow" 
+                      Duration="0:0:1" BeginTime="0:0:2"/>
+                    <ColorAnimation Storyboard.TargetName="brush" 
+                      Storyboard.TargetProperty="Color" From="Yellow" 
+                      To="Red" Duration="0:0:1" BeginTime="0:0:3"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Rectangle.Triggers>
+</Rectangle>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Rectangle Name="myrect" Width="350" Height="250">
+    <Rectangle.Fill>
+        <LinearGradientBrush x:Name="brush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop x:Name="stop1" Offset="0" Color="Red"/>
+            <GradientStop x:Name="stop2" Offset="0.5" Color="Green"/>
+            <GradientStop x:Name="stop3" Offset="1" Color="Blue"/>
+        </LinearGradientBrush>
+    </Rectangle.Fill>
+    <Rectangle.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard RepeatBehavior="Forever">
+                    <ColorAnimation Storyboard.TargetName="stop1" Storyboard.TargetProperty="Color" 
+                       From="Red" To="Green" Duration="0:0:1" BeginTime="0:0:0"/>
+                    <ColorAnimation Storyboard.TargetName="stop1" Storyboard.TargetProperty="Color" 
+                       From="Green" To="Blue" Duration="0:0:1" BeginTime="0:0:0.5"/>
+                    <ColorAnimation Storyboard.TargetName="stop1" Storyboard.TargetProperty="Color" 
+                       From="Blue" To="Red" Duration="0:0:1" BeginTime="0:0:1"/>
+                    <ColorAnimation Storyboard.TargetName="stop2" Storyboard.TargetProperty="Color" 
+                       From="Green" To="Blue" Duration="0:0:1" BeginTime="0:0:0"/>
+                    <ColorAnimation Storyboard.TargetName="stop2" Storyboard.TargetProperty="Color" 
+                       From="Blue" To="Red" Duration="0:0:1" BeginTime="0:0:0.5"/>
+                    <ColorAnimation Storyboard.TargetName="stop2" Storyboard.TargetProperty="Color" 
+                       From="Red" To="Green" Duration="0:0:1" BeginTime="0:0:1"/>
+                    <ColorAnimation Storyboard.TargetName="stop3" Storyboard.TargetProperty="Color" 
+                       From="Blue" To="Red" Duration="0:0:1" BeginTime="0:0:0"/>
+                    <ColorAnimation Storyboard.TargetName="stop3" Storyboard.TargetProperty="Color" 
+                       From="Red" To="Green" Duration="0:0:1" BeginTime="0:0:0.5"/>
+                    <ColorAnimation Storyboard.TargetName="stop3" Storyboard.TargetProperty="Color" 
+                       From="Green" To="Blue" Duration="0:0:1" BeginTime="0:0:1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Rectangle.Triggers>
+</Rectangle>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  <Window.Triggers>
+    <EventTrigger RoutedEvent="Window.Loaded">
+      <BeginStoryboard>
+        <Storyboard AutoReverse="True" RepeatBehavior="Forever">
+          <ColorAnimation Storyboard.TargetProperty="Background.Color" To="White" />
+          <ColorAnimation Storyboard.TargetName="rect" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="Firebrick" />
+        </Storyboard>
+      </BeginStoryboard>
+    </EventTrigger>
+  </Window.Triggers>
+  <Rectangle x:Name="rect" Width="100" Height="100" Fill="WhiteSmoke" />
+  
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

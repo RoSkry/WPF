@@ -1,0 +1,66 @@
+﻿<Window x:Class="hometask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hometask"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <StackPanel>
+        <DockPanel >
+        
+        <ListBox x:Name="list" Margin="10 10 11 0" Padding="10 0 60 0" SelectionChanged="ListBox_SelectionChanged">
+                <ListBoxItem> Winter</ListBoxItem>
+                <ListBoxItem>Summer</ListBoxItem>
+                <ListBoxItem>Sunset</ListBoxItem>
+                <ListBoxItem>Flowers</ListBoxItem>
+                <ListBoxItem>Ocean</ListBoxItem>
+                <ListBoxItem>Future</ListBoxItem>
+                <ListBoxItem>Cars</ListBoxItem>
+                <ListBoxItem>Football</ListBoxItem>
+            </ListBox>
+           
+            <StackPanel DockPanel.Dock="Right">
+                <Expander Header="Свойства">
+                    <StackPanel >
+                    <Label Content="Размер" HorizontalAlignment="Center"/>
+                        <TextBlock Name="size" HorizontalAlignment="Center"/>
+                        <Label Content="Разрешение" HorizontalAlignment="Center"/>
+                        <TextBlock Name="razr" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Фильтр">
+                    <StackPanel>
+                        <Label Content="по оценке"/>
+                        <ComboBox SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBoxItem>1</ComboBoxItem>
+                            <ComboBoxItem>2</ComboBoxItem>
+                            <ComboBoxItem>3</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem>5</ComboBoxItem>
+                            
+                        </ComboBox>
+
+                    </StackPanel>
+                    
+                </Expander>
+                
+            </StackPanel>
+       <Image x:Name="image" Height="250"/>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0" >
+            <RadioButton Content="1"  Margin="14 0 0 0" IsThreeState="False" GroupName="rate" IsChecked="False" Checked="RadioButton_Checked"/>
+            <RadioButton Content="2"  Margin="14 0 0 0" GroupName="rate" IsThreeState="False" IsChecked="False"   Checked="RadioButton_Checked"/>
+            <RadioButton Content="3"  Margin="14 0 0 0" GroupName="rate" IsThreeState="False"  IsChecked="False"  Checked="RadioButton_Checked"/>
+            <RadioButton Content="4"  Margin="14 0 0 0" GroupName="rate" IsThreeState="False"  IsChecked="False"  Checked="RadioButton_Checked"/>
+            <RadioButton Content="5"  Margin="14 0 0 0" GroupName="rate" IsThreeState="False" IsChecked="False"   Checked="RadioButton_Checked"/>
+        </StackPanel>
+
+        <DockPanel HorizontalAlignment="Center" Margin="4 0 0 0">
+            <Button x:Name="nextbtn" Content="Next" Margin="15 11 12 21" Padding="13 3 13 3" Click="nextbtn_Click"/>
+            <Slider x:Name="slider" HorizontalAlignment="Stretch" Margin="10 10 20 10" Width="450" ValueChanged="Slider_ValueChanged" Maximum="9"/>
+            <Button x:Name="prevbtn" Content="previous" Margin="0 11 12 21" Click="prevbtn_Click"/>
+        </DockPanel>
+    </StackPanel>
+</Window>

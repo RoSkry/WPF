@@ -1,0 +1,28 @@
+Контейнеры компоновки 
+Stack Panel - помогает размещать элементы в виде стека элементы раставить в том виде в котором нам нужно 
+wrap panel контейнер который работает html, форматирование строк
+Dock Panel позволяет привязывать елементы к разным своим сторонам 
+grid 
+Canvas 
+Winformgrid
+
+
+MinWidth - минимальная ширина 
+LastChildFill - заставляет последний элемент в dockpanel занимать все пространство 
+AcceptsReturn="True"- возможность переносить на новую строку  
+VerticalScrollBarVisibility="Auto"скрол 
+задание 1
+  <DockPanel>
+        <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Button Margin="5" Width="100">Ok</Button>
+            <Button Margin="5">Cancel</Button>
+            
+        </StackPanel>
+        <TextBox Margin="5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"></TextBox>
+    </DockPanel>
+
+
+ShowGridLines="True" показывает линии
+auto размер по содержимому
+*- все оставщее 
+pixel значение и такой размер береться

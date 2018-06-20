@@ -1,0 +1,35 @@
+﻿<Window x:Class="scrollTrackbar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:scrollTrackbar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Icon="Smiley.ico">
+    <Grid>
+
+        <!--<Slider Name="RectangleHeight"  Margin="10, 0, 0, 0" 
+  Width="100" Orientation="Horizontal" HorizontalAlignment="Left" 
+  Value="50" Minimum="0" Maximum="200" 
+  SmallChange="1" LargeChange="10"
+  TickPlacement="BottomRight" TickFrequency="10" Ticks="20,55,125"/>
+        <ScrollBar Height="20"  Orientation="Horizontal" Margin="6" Name="scrollBar1" Minimum="0" Maximum="10" Value="6"  />-->
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Name="stack">
+            <ProgressBar Name="progress" Width="250" Height="30" IsIndeterminate="True" />
+            
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+            <Button  Width="250" Height="30" />
+
+            <ScrollBar Height="20"  Orientation="Horizontal" Margin="6" Name="scrollBar2" Minimum="0" Maximum="10" Value="6" />
+        </StackPanel>
+    </ScrollViewer>
+
+    </Grid>
+</Window>

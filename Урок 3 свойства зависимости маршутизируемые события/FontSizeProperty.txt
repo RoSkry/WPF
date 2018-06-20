@@ -1,0 +1,37 @@
+ public class Control : FrameworkElement
+    {
+        // DependencyProperty и открытое свойство 
+        public static readonly DependencyProperty FontSizeProperty;
+       
+        // Статический конструктор 
+        static Control()
+        {
+            // Определение метаданных 
+            FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata();
+            metadata.DefaultValue = 11;
+            metadata.AffectsMeasure = true;
+            metadata.Inherits = true;
+			metadata.IsDataBindingAllowed = true;
+            metadata.DefaultUpdateSourceTrigger += UpdateSourceTrigger.PropertyChanged;
+            // Регистрация DependencyProperty 
+            FontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(Control), metadata, ValidateFontSize);
+        }
+        // Метод обратного вызова для проверки значения 
+        static bool ValidateFontSize(object obj)
+        {
+            double fontSize = (double)obj;
+            return fontSize > 0 && fontSize <= 35791;
+        }
+       
+        public double FontSize
+        {
+            set
+            {
+                SetValue(FontSizeProperty, value);
+            }
+            get
+            {
+                return (double)GetValue(FontSizeProperty);
+            }
+        }
+    }

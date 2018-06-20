@@ -1,0 +1,37 @@
+﻿<Window x:Class="Bind.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid DataContext="{Binding ElementName=dgStudents, Path=SelectedItem}"><!--ElementName=list-->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.RowSpan="3"  Name="dgStudents" AutoGenerateColumns="False"
+                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Students}" PreviewMouseLeftButtonUp="dgStudents_PreviewMouseLeftButtonUp">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Возраст" Width="*" Binding="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<ListBox Grid.RowSpan="3" Name="list" IsSynchronizedWithCurrentItem="True"
+                 ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Students}"/>-->
+        <Label Grid.Column="1" Content="Фамилия: "/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Имя: "/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Возраст: "/>
+        <TextBox Grid.Column="2" Text="{Binding LastName}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding FirstName}"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button  Grid.Row="3" Grid.ColumnSpan="3" Name="change" Content="Change" Click="change_Click"/>
+        <Button  Grid.Row="4" Grid.ColumnSpan="3" Name="add" Content="Add" Click="add_Click"/>
+    </Grid>
+</Window>

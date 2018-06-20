@@ -1,0 +1,33 @@
+﻿<Window x:Class="hometask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hometask"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="830">
+    <Grid>
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+            <ListBox SelectionChanged="lstbox_SelectionChanged" Name="lstbox"/>
+            <Image Source="Images/1.jpg" />
+            <StackPanel DataContext="{Binding ElementName=lstbox,Path=SelectedItem}">
+                <CheckBox IsChecked="{Binding ElementName=purchased,Path=Text}" Name="chbx" Content="Buy" Checked="chbx_Checked" Unchecked="chbx_Unchecked" />
+                <Label Content="Name of product"/>
+                <TextBox x:Name="name" Text="{Binding Name}" IsReadOnly="True"/>
+                <Label Content="Code of product"/>
+                <TextBox x:Name="code" Text="{Binding Code}" IsReadOnly="True"/>
+                <Label Content="Price"/>
+                <TextBox x:Name="price" Text="{Binding Price}" IsReadOnly="True"/>
+                <Label Content="Real Price"/>
+                <TextBox x:Name="realprice" Text="{Binding RealPrice}" IsReadOnly="True"/>
+                <Label Content="Purchased"/>
+                <TextBox x:Name="purchased" Text="{Binding Purchased}" IsReadOnly="True"/>
+                <Label Content="Count"/>
+                <TextBox x:Name="count" Text="{Binding Count}" IsReadOnly="True"/>
+                <Button Name="nextbtn" Content="Next" Click="nextbtn_Click"/>
+                <Button Name="previousbtn" Content="Previous" Click="previousbtn_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

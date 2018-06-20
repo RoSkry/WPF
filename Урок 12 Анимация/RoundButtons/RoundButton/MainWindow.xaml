@@ -1,0 +1,10 @@
+﻿<Window x:Class="RoundButton.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <Button Name="myButton" Width="100" Height="100" Background="LightBlue" Content="OK!" Click="myButton_Click" Style="{StaticResource RoundButtonStyle}"/> <!--Template="{StaticResource RoundButtonTemplate}"-->
+        <Button Name="myButton2" Width="100" Height="100" Background="LightGreen" Content="NO" Style="{StaticResource RoundButtonStyle}" /><!--Template="{StaticResource RoundButtonTemplate}"-->
+        <Button Name="myButton3" Width="100" Height="100" Background="Red" Content="CANCEL" Style="{StaticResource RoundButtonStyle}" /><!--Template="{StaticResource RoundButtonTemplate}"-->
+    </StackPanel>
+</Window>

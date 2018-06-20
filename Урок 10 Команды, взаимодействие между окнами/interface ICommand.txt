@@ -1,0 +1,9 @@
+﻿public interface ICommand
+        {
+            // Возникает, когда происходит изменение режима, должна или нет выполняться данная команда. 
+            event EventHandler CanExecuteChanged;
+            // Задает метод, определяющий, может ли команда выполняться в ее данном состоянии. 
+            bool CanExecute(object parameter);
+            // Определяет метод, вызываемый для выполнения команды. 
+            void Execute(object parameter);
+        } 

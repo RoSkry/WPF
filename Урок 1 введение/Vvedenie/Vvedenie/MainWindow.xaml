@@ -1,0 +1,52 @@
+﻿<Window x:Class="Vvedenie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vvedenie"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="361.715" Width="551.36">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Brush1" Color="Red"/>
+    </Window.Resources>
+    <Grid Margin="0,0,-8,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="457*"/>
+            <ColumnDefinition Width="86*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button" xml:space="preserve"  HorizontalAlignment="Left" Margin="98,20,0,0" VerticalAlignment="Top" Width="321" Height="85" RenderTransformOrigin="0.369,1.305" Grid.Row="1" Grid.RowSpan="2" Click="button_Click">
+           Hello                                gh
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.979"/>
+                    <SkewTransform AngleX="23.188" AngleY="-2.709"/>
+                    <RotateTransform Angle="-2155.72"/>
+                    <TranslateTransform X="24.369" Y="-3.073"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFB042A6" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button1" HorizontalAlignment="Left" Margin="92,46,0,0" Grid.Row="2" VerticalAlignment="Top" Width="175" Click="button1_Click">
+            <Button.Content>
+                <local:Phone Name="23" Price="12"/>
+            </Button.Content>
+            
+            
+        </Button>
+
+    </Grid>
+</Window>

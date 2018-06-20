@@ -1,0 +1,133 @@
+
+    <StackPanel Name="stack">
+        <Button Content="Нажать" Width="150" Click="Button_Click"/>
+        <Image Name="img"/>
+    </StackPanel>
+
+-------------------------------------------------------------------------
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory + "/Img");
+            //DirectoryInfo[] directories = directoryInfo.GetDirectories();
+
+            //FileInfo fileInfo = new FileInfo(directoryInfo + "/bear.jpg");
+            //BitmapImage bitmapImage = new BitmapImage(new Uri(fileInfo.FullName));
+
+            BitmapImage bitmapImage = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"Img/bear.jpg")));
+            img.Source = bitmapImage;
+        }
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<Window x:Class="..."
+
+        ......
+
+        Title="Window1" Height="450" Width="800" Icon="Smiley.ico" Loaded="Window_Loaded">
+    <StackPanel Name="stack">
+        <Button Content="Нажать" Width="150" Click="Button_Click"/>
+        <Image Name="img" Source="pack://application:,,,/Images/bear.jpg"/>
+        <MediaElement Name="Sound" Source="Sounds/00171.mp3" LoadedBehavior="Manual"/>
+    </StackPanel>
+
+--------------------------------------------------------------------------------------------------------------------
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            img.Source = new BitmapImage(new Uri("Images/Winter.jpg", UriKind.Relative));
+
+            Sound.Stop();
+            Sound.Play();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            StreamResourceInfo streamResourceInfo =
+                Application.GetResourceStream(new Uri("Images/fon.png", UriKind.Relative));
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = streamResourceInfo.Stream;
+            bitmapImage.EndInit();
+
+            this.Background = new ImageBrush(bitmapImage);
+        }
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            StreamResourceInfo streamResourceInfo =
+                Application.GetResourceStream(new Uri("Images/fon.png", UriKind.Relative));
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = streamResourceInfo.Stream;
+            bitmapImage.EndInit();
+
+            this.Background = new ImageBrush(bitmapImage);
+        }
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ <Window.Resources>
+        <SolidColorBrush x:Key="ButtonBrush" Color="#237237"/>
+        <ImageBrush x:Key="ImageBrush" ImageSource="Images/bear.jpg"/>
+    </Window.Resources>
+
+    <StackPanel Name="stack">
+        <Button Content="Нажать" Background="{StaticResource ButtonBrush}" Width="150" Click="Button_Click"/>
+        <Button Height="250" Background="{DynamicResource ButtonBrush}"/>
+        <Button Height="60" Width="100">
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBrush" Color="Purple"/>
+            </Button.Resources>
+            <Button.Background>
+                <StaticResource ResourceKey="ButtonBrush"/>
+            </Button.Background>
+        </Button>
+        <Button Content="Change" Click="Button_Click"/>
+    </StackPanel>
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    <!--<Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Images/fon.png"/>
+        <ImageBrush ImageSource="pack://application:,,,/WpfApp1;component/Images/fon.png"/>
+    </Window.Background>-->
+    <Window.Resources>
+        <ImageBrush x:Key="ImageBrush" ImageSource="Images/bear.jpg"/>
+    </Window.Resources>
+
+    <StackPanel Name="stack">
+        <Button Content="Нажать" Background="{StaticResource ButtonBrush}" Height="110" Click="Button_Click"/>
+        <Button Height="150" Background="{DynamicResource ButtonBrush}"/>
+        <Button Height="60" Width="100">
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBrush" Color="Purple"/>
+            </Button.Resources>
+            <Button.Background>
+                <StaticResource ResourceKey="ButtonBrush"/>
+            </Button.Background>
+        </Button>
+        <Button Content="Change" Click="Button_Click"/>
+    </StackPanel>
+
+
+            //SolidColorBrush solidColorBrush = this.Resources["ButtonBrush"] as SolidColorBrush;
+            //solidColorBrush.Opacity = 0.5;
+
+            //Application.Current.Resources["ButtonBrush"] = Brushes.Red;
+
+            //this.Resources["ButtonBrush"] = new SolidColorBrush(Colors.Red);
+
+            //SolidColorBrush solidColorBrush1 = this.FindResource("ButtonBrush1") as SolidColorBrush;
+
+            //SolidColorBrush solidColorBrush2 = this.TryFindResource("ButtonBrush1") as SolidColorBrush;
+
+

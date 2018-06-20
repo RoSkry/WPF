@@ -1,0 +1,79 @@
+
+я написал простой код
+
+public ObservableCollection<string> Names Е
+public Window1()
+{
+    PutInDataIntoNames();
+    InitializeComponent();
+    this.listBox1.ItemsSource = Names;
+}
+и в xaml
+
+<Grid>
+    <ListBox Margin="10,11,10,16"
+         Name="listBox1"
+         Background="Black" 
+         Foreground="Orange" 
+         />
+</Grid>
+
+я установил свойство ItemsSource ListBox в XAML. ƒл€ этого, € написал следующее:
+
+ItemsSource="{Binding Path=Names}"
+
+  сожалению, это не работает. Ќе могли бы вы объ€снить, почему и как это сделать правильно?
+
+ќтвет 1:
+
+¬ коде установить DataContext окна
+
+public Window1() 
+{ 
+    PutInDataIntoNames(); 
+    InitializeComponent(); 
+    DataContext = this;
+} 
+и в xaml
+
+<Grid> 
+    <ListBox Margin="10,11,10,16" ItemsSource={Binding Names}
+         Name="listBox1" 
+         Background="Black"  
+         Foreground="Orange" /> 
+</Grid> 
+¬ идеале вы должны использовать паттерн MVVM
+
+ќтвет 2:
+
+≈сли вы хотите сделать прив€зку полностью в XAML, вам нужно сделать окно вашим источником или с помощью ссылки непосредственно, или относительно, или установив его в качестве DataContext.
+
+1 - прив€зка через свойство ElementName (не работает)
+
+<Window Name="Window"
+        ...>
+    <Grid> 
+            <ListBox ...
+                     ItemsSource="{Binding ElementName=Window, Path=Names}"
+                     .../>
+    </Grid>
+</Window>
+
+2 - прив€зка через свойство RelativeSource (не работает)
+
+    <Grid> 
+            <ListBox ...
+                     ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Names}"
+                     .../>
+    </Grid>
+
+3 - прив€зка через свойство DataContext окна (работает)
+
+<Window ...
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    <Grid> 
+            <ListBox ...
+                     ItemsSource="{Binding Path=Names}"
+                     .../>
+    </Grid>
+</Window>

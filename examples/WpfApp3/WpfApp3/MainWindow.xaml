@@ -1,0 +1,51 @@
+﻿<Window x:Class="WpfApp3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <!--<StackPanel>
+        <Ellipse Width="100" Height="100" Fill="Aqua" Stroke="Red" StrokeThickness="6" StrokeDashArray="3 4" StrokeDashCap="Round"/>
+        <Rectangle Width="200" Height="100" Fill="Bisque"/>
+        <Polygon Fill="Beige" Points="50,100,100,50,45,45"/>
+    </StackPanel>-->
+    <!--<Viewbox HorizontalAlignment="Left">
+        <Canvas Width="85" Height="50">
+            <Rectangle Height="13" Width="37" Stroke="Blue" StrokeThickness="2" Fill="LightBlue" Canvas.Left="7" Canvas.Top="20" />
+            <Ellipse  Fill ="Red" HorizontalAlignment="Stretch" Stretch="Fill"
+           Height="22" Width="26" Canvas.Left="12" Canvas.Top="15" />
+        </Canvas>
+    </Viewbox>-->
+    <StackPanel >
+    <!--<Ellipse Height ="100" Width ="100" Fill = "Black" />
+
+    <Line Name ="SimpleLine" X1 ="50" X2 ="150" Y1 ="50" Y2 ="150" Stroke ="DarkOliveGreen" StrokeThickness ="15" ToolTip ="This is a line!" StrokeStartLineCap="Round" StrokeEndLineCap="Triangle" />
+
+
+
+    <Polyline Stroke ="Red" StrokeThickness ="20" StrokeLineJoin ="Round" Points ="10,10  40,40 10,90 300,50"/>
+
+
+    <Polygon Fill ="AliceBlue" StrokeThickness ="5" Stroke ="Green" Points ="40,10 70,80 10,50" />
+
+
+    <Polygon Stroke="Blue" StrokeThickness="2" Fill="Yellow" FillRule="Nonzero" Points= "5,200 68,70 110,200 0,125 135,125" />-->
+        <!--<Rectangle Height="25" Width="37" Stroke="Blue" StrokeThickness="2" Fill="LightBlue" Canvas.Left="7" Canvas.Top="20" >
+            <Rectangle.RenderTransform>
+                <RotateTransform Angle="45" />
+            </Rectangle.RenderTransform>
+        </Rectangle>-->
+
+        <StackPanel>
+
+            <Canvas>
+
+                <Polygon Name="polygon" Stroke="Blue" StrokeThickness="2" Fill="Yellow" FillRule="EvenOdd" Points= "5,200 68,70 110,200 0,125 135,125" RenderTransformOrigin="0.448,0.712"/>
+            </Canvas>
+            <Button Name="b1" Content="Rotate" Width="200" Click="b1_Click" />
+
+        </StackPanel>
+    </StackPanel>
+</Window>

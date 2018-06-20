@@ -1,0 +1,97 @@
+﻿Конструкторы
+	Timeline()	Инициализирует новый экземпляр класса Timeline.
+	Timeline(Nullable<TimeSpan>)	Выполняет инициализацию нового экземпляра класса Timeline с заданным параметром BeginTime.
+	Timeline(Nullable<TimeSpan>, Duration)	Инициализирует новый экземпляр класса Timeline с заданными свойствами BeginTime и Duration.
+	Timeline(Nullable<TimeSpan>, Duration, RepeatBehavior)	Инициализирует указанный экземпляр класса Timeline с указанными свойствами BeginTime, Duration и RepeatBehavior.
+
+Методы
+	AllocateClock	Создает Clock для этого элемента управления Timeline. 
+	ApplyAnimationClock(DependencyProperty, AnimationClock)	Применяет значение AnimationClock к указанному свойству DependencyProperty.Если свойство уже является анимированным, используется поведение переадресации SnapshotAndReplace. (Унаследовано от Animatable.)
+	ApplyAnimationClock(DependencyProperty, AnimationClock, HandoffBehavior)	Применяет значение AnimationClock к указанному свойству DependencyProperty.Если свойство уже является анимированным, используется указанное поведение HandoffBehavior. (Унаследовано от Animatable.)
+	BeginAnimation(DependencyProperty, AnimationTimeline)	Применяет анимацию к указанному свойству DependencyProperty.Анимация начинается при визуализации следующего кадра.Если указанное свойство уже является анимированным, используется поведение переадресации SnapshotAndReplace. (Унаследовано от Animatable.)
+	BeginAnimation(DependencyProperty, AnimationTimeline, HandoffBehavior)	Применяет анимацию к указанному свойству DependencyProperty.Анимация начинается при визуализации следующего кадра.Если указанное свойство уже является анимированным, используется указанное поведение HandoffBehavior. (Унаследовано от Animatable.)
+	CheckAccess	Определяет, имеет ли вызывающий поток доступ к этому DispatcherObject. (Унаследовано от DispatcherObject.)
+	ClearValue(DependencyProperty)	Очищает локальное значение свойства.Очищаемое свойство задается идентификатором DependencyProperty. (Унаследовано от DependencyObject.)
+	ClearValue(DependencyPropertyKey)	Очищает локальное значение свойства, доступного только для чтения.Очищаемое свойство задается объектом DependencyPropertyKey. (Унаследовано от DependencyObject.)
+	Clone	Создает модифицируемый клон данного объекта Timeline, делая глубокие копии значений этого объекта. 
+	CloneCore	Создает экземпляр копии (глубокой копии) заданного объекта Freezable, используя базовые (не анимационные) значения свойств. (Унаследовано от Freezable.)
+	CloneCurrentValue	Создает изменяемую копию данного объекта Timeline, делая глубокие копии текущих значений этого объекта. 
+	CloneCurrentValueCore	Создает экземпляр редактируемой копии (глубокой копии) заданного объекта Freezable, используя текущие значения свойства. (Унаследовано от Freezable.)
+	CoerceValue	Осуществляет приведение значения указанного свойства зависимостей.Это осуществляется путем вызова какой-либо функции CoerceValueCallback, указанной в метаданных свойства зависимостей, которое существует в вызывающем объекте DependencyObject. (Унаследовано от DependencyObject.)
+	CreateClock()	Создает новый управляемый объект Clock на основе указанного объекта Timeline.Если этот объект Timeline имеет дочерние объекты, создается дерево часов с этим объектом Timeline в корне.
+	CreateClock(Boolean)	Создает новый объект Clock на основе этого объекта Timeline и определяет, является ли новый объект Clock управляемым.Если этот объект Timeline имеет дочерние объекты, создается дерево часов с этим объектом Timeline в корне.
+	CreateInstance	Инициализирует новый экземпляр класса Freezable. (Унаследовано от Freezable.)
+	CreateInstanceCore	Если реализуется в производном классе, создает новый экземпляр производного класса Freezable. (Унаследовано от Freezable.)
+	Equals	Определяет, является ли указанный DependencyObject эквивалентом текущего DependencyObject. (Унаследовано от DependencyObject.)
+	Finalize	Позволяет объекту Object попытаться освободить ресурсы и выполнить другие операции очистки, перед тем как объект Object будет утилизирован в процессе сборки мусора. (Унаследовано от Object.)
+	Freeze()	Делает текущий объект нередактируемым и определяет для его свойства IsFrozen значение true. (Унаследовано от Freezable.)
+	FreezeCore	Делает данный объект Timeline неизменяемым или определяет, может ли он быть сделан неизменяемым. (Переопределяет Animatable.FreezeCore(Boolean).)
+	GetAnimationBaseValue	Возвращает не анимированное значение указанного объекта DependencyProperty. (Унаследовано от Animatable.)
+	GetAsFrozen	Создает фиксированную копию объекта Freezable, используя базовые (не анимационные) значения свойств.Так как копия является фиксированной, копируются только ссылки на фиксированные вложенные объекты. (Унаследовано от Freezable.)
+	GetAsFrozenCore	Делает этот экземпляр копией указанного объекта Timeline. (Переопределяет Freezable.GetAsFrozenCore(Freezable).)
+	GetCurrentValueAsFrozen	Создает фиксированную копию объекта Freezable с использованием текущих значений свойств.Так как копия является фиксированной, копируются только ссылки на фиксированные вложенные объекты. (Унаследовано от Freezable.)
+	GetCurrentValueAsFrozenCore	Делает данный экземпляр замороженной копией указанного объекта Timeline.Ссылки на ресурсы, привязки данных и анимации не копируются, в отличие от их текущих значений. (Переопределяет Freezable.GetCurrentValueAsFrozenCore(Freezable).)
+	GetDesiredFrameRate	Возвращает нужную частоту кадров заданного объекта Timeline. 
+	GetHashCode	Возвращает хэш-код для данного DependencyObject. (Унаследовано от DependencyObject.)
+	GetLocalValueEnumerator	Создает специализированный перечислитель для определения свойств зависимостей, которые локально установили значения для данного DependencyObject. (Унаследовано от DependencyObject.)
+	GetNaturalDuration	Возвращает продолжительность отдельной итерации этого объекта Timeline. 
+	GetNaturalDurationCore	Возвращает продолжительность отдельной итерации этого объекта Timeline.Этот метод обеспечивает реализацию для объекта GetNaturalDuration.
+	GetType	Возвращает объект Type для текущего экземпляра. (Унаследовано от Object.)
+	GetValue	Возвращает текущее действующее значение свойства зависимостей в данном экземпляре DependencyObject. (Унаследовано от DependencyObject.)
+	InvalidateProperty	Повторно вычисляет действующее значение для указанного свойства зависимостей (Унаследовано от DependencyObject.)
+	MemberwiseClone	Создает неполную копию текущего объекта Object. (Унаследовано от Object.)
+	OnChanged	Вызывается при изменении текущего объекта Freezable. (Унаследовано от Freezable.)
+	OnFreezablePropertyChanged(DependencyObject, DependencyObject)	Обеспечивает создание соответствующих указателей контекста для элемента данных типа DependencyObjectType, который был только что задан. (Унаследовано от Freezable.)
+	OnFreezablePropertyChanged(DependencyObject, DependencyObject, DependencyProperty)	Данный член поддерживает инфраструктуру Windows Presentation Foundation (WPF) и не предназначен для непосредственного использования из кода. (Унаследовано от Freezable.)
+	OnPropertyChanged	Переопределяет реализацию DependencyObject метода OnPropertyChanged, чтобы также вызывать любые обработчики Changed в ответ на изменение свойства зависимостей типа Freezable. (Унаследовано от Freezable.)
+	ReadLocalValue	Возвращает локальное значение свойства зависимости, если таковое существует. (Унаследовано от DependencyObject.)
+	ReadPreamble	Обеспечивает доступ к Freezable из допустимого потока.Наследники объекта Freezable должны вызывать данный метод в начале любого API-интерфейс, который считывает элементы данных, не являющиеся свойствами зависимостей. (Унаследовано от Freezable.)
+	SetCurrentValue	Задает значение свойства зависимостей, не меняя источник значения. (Унаследовано от DependencyObject.)
+	SetDesiredFrameRate	Задает нужную частоту кадров заданного объекта Timeline.
+	SetValue(DependencyProperty, Object)	Задает локальное значение свойства зависимостей, указанного идентификатором этого свойства. (Унаследовано от DependencyObject.)
+	SetValue(DependencyPropertyKey, Object)	Задает локальное значение доступного только для чтения свойства зависимостей, указанного идентификатором DependencyPropertyKey. (Унаследовано от DependencyObject.)
+	ShouldSerializeProperty	Возвращает значение, указывающее, следует ли процессам сериализации сериализовать значение для указанного свойства зависимостей. (Унаследовано от DependencyObject.)
+	ToString	Возвращает объект String, который представляет текущий объект Object. (Унаследовано от Object.)
+	VerifyAccess	Обеспечивает наличие у вызывающего потока доступ к этому DispatcherObject. (Унаследовано от DispatcherObject.)
+	WritePostscript	Вызывает событие Changed для объекта Freezable и вызывает его метод OnChanged.Классы, которые являются производными от класса Freezable, должны вызывать данный момент в конце любого интерфейса API, который изменяет элементы класса, не сохраненные как свойства зависимостей. (Унаследовано от Freezable.)
+	WritePreamble	Проверяет, что объект Freezable не заморожен и доступ к нему осуществляется из допустимого контекста потока.Наследники объекта Freezable должны вызывать данный метод в начале любого API-интерфейс, который выполняет запись в элементах данных, не являющихся свойствами зависимостей. (Унаследовано от Freezable.)
+
+Поля
+	AccelerationRatioProperty	Идентифицирует свойство зависимостей AccelerationRatio.
+	AutoReverseProperty	Идентифицирует свойство зависимостейAutoReverse.
+	BeginTimeProperty	Идентифицирует свойство зависимостейBeginTime.
+	DecelerationRatioProperty	Идентифицирует свойство зависимостей DecelerationRatio.
+	DesiredFrameRateProperty	Идентифицирует вложенное свойство зависимостей DesiredFrameRate.
+	DurationProperty	Идентифицирует свойство зависимостейDuration.
+	FillBehaviorProperty	Идентифицирует свойство зависимостейFillBehavior.
+	NameProperty	Идентифицирует свойство зависимостейName.
+	RepeatBehaviorProperty	Идентифицирует свойство зависимостейRepeatBehavior.
+	SpeedRatioProperty	Идентифицирует свойство зависимостей SpeedRatio.
+
+Свойства
+	AccelerationRatio	Получает или задает значение, указывающее процент значения свойства Duration шкалы времени, за который выполняется ускорение времени от нулевой до максимальной скорости. 
+	AutoReverse	Получает или задает значение, которое определяет, будет ли шкала времени воспроизводиться в обратном порядке после завершения прямой итерации. 
+	BeginTime	Получает или задает время начала Timeline. 
+	CanFreeze	Возвращает значение, которое показывает, можно ли сделать объект нередактируемым. (Унаследовано от Freezable.)
+	DecelerationRatio	Получает или задает значение, указывающее процент значения свойства Duration шкалы времени, за который выполняется замедление времени от максимальной до нулевой скорости. 
+	DependencyObjectType	Возвращает DependencyObjectType, который создает обертку для типа CLR данного экземпляра.  (Унаследовано от DependencyObject.)
+	Dispatcher	Возвращает объект Dispatcher, с которым связан этот объект DispatcherObject. (Унаследовано от DispatcherObject.)
+	Duration	Получает или задает продолжительность воспроизведения шкалы времени без учета повторов. 
+	FillBehavior	Получает или задает значение, которое определяет поведение объекта Timeline по достижении конца активного периода. 
+	HasAnimatedProperties	Возвращает значение, которое указывает, сопоставлены ли один или несколько объектов AnimationClock любому из свойств зависимостей этого объекта. (Унаследовано от Animatable.)
+	IsFrozen	Возвращает значение, которое показывает, является ли сейчас объект редактируемым. (Унаследовано от Freezable.)
+	IsSealed	Получает значение, указывающее, является ли этот экземпляр в данный момент запечатанным (доступным только для чтения). (Унаследовано от DependencyObject.)
+	Name	Получает или задает имя объекта Timeline. 
+	RepeatBehavior	Получает или задает поведение этой шкалы времени при повторе. 
+	SpeedRatio	Получает или задает скорость течения времени этого объекта Timeline относительно родительского объекта. 
+
+Вложенные свойства
+	DesiredFrameRate	Получает или задает нужную частоту кадров для шкалы времени и ее дочерних шкал времени. 
+
+События
+	Changed	Происходит, когда изменяется класс Freezable или объект, который входит в его состав. (Унаследовано от Freezable.)
+	Completed	Происходит, когда воспроизведение шкалы времени полностью завершено: шкала времени больше не входит в активный период. 
+	CurrentGlobalSpeedInvalidated	Происходит при изменении скорости течения времени для часов шкалы времени.
+	CurrentStateInvalidated	Происходит при обновлении свойства CurrentState объекта Clock шкалы времени.
+	CurrentTimeInvalidated	Происходит при обновлении свойства CurrentTime объекта Clock шкалы времени.
+	RemoveRequested	Происходит при удалении часов, созданных для этой шкалы времени или одной из ее родительских шкал времени.
